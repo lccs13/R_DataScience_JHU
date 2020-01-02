@@ -116,3 +116,44 @@ x
 m <- matrix(1:4,nrow = 2, ncol = 2)
 dimnames(m) <- list(c("a","b"),c("c","d"))
 m
+
+# Subsetting - Partial Matching
+
+x <- list(aardvark = 1:5)
+x$a
+x[["a"]]
+x[["a", exact = FALSE]]
+
+# Subsetting - Removing Missing Values
+
+ x <- c(1, 2, NA, 4, NA, 5)
+bad <- is.na(x)
+bad
+x[!bad]
+
+x <- c(1, 2, NA, 4, NA, 5)
+y <- c("a","b", NA, "d", NA, "f")
+good <- complete.cases(x,y)
+good
+x[good]
+y[good]
+
+airquality[1:6,]
+good <- complete.cases(airquality)
+airquality[good,][1:6,]
+
+## vectorized operations
+
+x <- 1:4; y <- 6:9
+x+y
+x > 2
+x >= 2
+y == 8
+x*y
+x/y
+
+
+x <- matrix(1:4,2,2) ; y <- matrix(rep(10,4),2,2)
+x * y ## element-wise multiplication
+x / y
+x %*% y ## true matrix multiplication
